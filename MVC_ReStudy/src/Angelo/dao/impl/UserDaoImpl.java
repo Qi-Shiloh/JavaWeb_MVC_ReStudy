@@ -2,16 +2,16 @@ package Angelo.dao.impl;
 
 import Angelo.dao.IUserDao;
 import Angelo.domain.User;
+import Angelo.util.XmlUtils;
+import org.dom4j.Element;
 
-import javax.swing.text.Document;
-import javax.swing.text.Element;
 import java.text.SimpleDateFormat;
 
 public class UserDaoImpl implements IUserDao {
     @Override
     public User find(String userName, String userPwd) {
         try{
-            Document document = XmlUtils.getDocument();
+            org.dom4j.Document document = XmlUtils.getDocument();
             //使用XPath表达式来操作XML节点
             Element e = (Element) document.selectSingleNode("//user[@userName='"+userName+"' and @userPwd='"+userPwd+"']");
             if(e==null){
@@ -37,9 +37,9 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public void add(User user) {
         try{
-            Document document = XmlUtils.getDocument();
-            Element root = document.getRootElement();
-            Element user_node = root.addElement("user");  //创建user结点，并挂到root
+            org.dom4j.Document document = XmlUtils.getDocument();
+            org.dom4j.Element root = document.getRootElement();
+            org.dom4j.Element user_node = root.addElement("user");  //创建user结点，并挂到root
             user_node.setAttributeValue("id", user.getId());
             user_node.setAttributeValue("userName", user.getUserName());
             user_node.setAttributeValue("userPwd", user.getUserPwd());
@@ -58,7 +58,7 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public User find(String userName) {
         try{
-            Document document = XmlUtils.getDocument();
+            org.dom4j.Document document = XmlUtils.getDocument();
             Element e = (Element) document.selectSingleNode("//user[@userName='"+userName+"']");
             if(e==null){
                 return null;

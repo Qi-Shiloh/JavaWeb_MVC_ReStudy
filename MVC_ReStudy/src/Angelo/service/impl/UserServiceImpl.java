@@ -3,6 +3,7 @@ package Angelo.service.impl;
 import Angelo.dao.IUserDao;
 import Angelo.dao.impl.UserDaoImpl;
 import Angelo.domain.User;
+import Angelo.exception.UserExistException;
 import Angelo.service.IUserService;
 
 public class UserServiceImpl implements IUserService {
@@ -24,5 +25,4 @@ public class UserServiceImpl implements IUserService {
         return userDao.find(userName, userPwd);
     }
 
-}
 }

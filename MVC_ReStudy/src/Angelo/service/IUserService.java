@@ -1,6 +1,7 @@
 package Angelo.service;
 
 import Angelo.domain.User;
+import Angelo.exception.UserExistException;
 
 public interface IUserService {
 
@@ -9,7 +10,7 @@ public interface IUserService {
      * @param user
      * @throws UserExistException
      */
-    void registerUser(User user) throws UserExistException;
+    void registerUser(User user) throws UserExistException, UserExistException;
 
     /**
      * 提供登录服务
